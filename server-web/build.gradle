@@ -3,7 +3,16 @@ apply plugin: 'groovy'
 
 
 dependencies {
-      
+
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.28'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jdk-http', version: '2.28'
+    compile 'org.glassfish.jersey.core:jersey-common:2.28'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.28'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0.1'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+
+    compile group: 'com.google.inject', name: 'guice', version: '4.2.2'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
     compile group: 'com.google.guava', name: 'guava', version: '27.0-jre'
 
