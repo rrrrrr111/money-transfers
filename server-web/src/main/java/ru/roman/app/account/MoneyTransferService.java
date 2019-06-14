@@ -7,6 +7,6 @@ import java.math.BigDecimal;
  */
 public interface MoneyTransferService {
 
-    TransferResult transferAmount(String debitAccount, String creditAccount, BigDecimal amount);
+    TransferResult transferAmount(String debitAccountId, String creditAccountId, BigDecimal amount);
 
 }

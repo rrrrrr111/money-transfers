@@ -20,7 +20,7 @@ import static ru.roman.app.account.TransferResult.SUCCESS;
  */
 public class MoneyTransferServiceImpl implements MoneyTransferService {
 
-    private Map<String, Account> accounts = new ConcurrentHashMap<>();
+    private final Map<String, Account> accounts = new ConcurrentHashMap<>();
 
     @Override
     public TransferResult transferAmount(
@@ -30,12 +30,12 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         Preconditions.checkNotNull(creditAccountId, "Credit account cannot be null");
         Preconditions.checkNotNull(amount, "Amount cannot be null");
 
-        Account debitAccount = getAccount(debitAccountId);
+        Account debitAccount = findAccount(debitAccountId);
         if (debitAccount == null) {
             return DEBIT_ACCOUNT_NOT_FOUND;
         }
 
-        Account creditAccount = getAccount(creditAccountId);
+        Account creditAccount = findAccount(creditAccountId);
         if (creditAccount == null) {
             return CREDIT_ACCOUNT_NOT_FOUND;
         }
@@ -49,10 +49,6 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         }
 
         return lockAndTransfer(debitAccount, creditAccount, amount);
-    }
-
-    private Account getAccount(String accountId) {
-        return accounts.getOrDefault(accountId, null);
     }
 
     private TransferResult lockAndTransfer(
@@ -75,6 +71,10 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         }
     }
 
+    Account findAccount(String accountId) {
+        return accounts.getOrDefault(accountId, null);
+    }
+
     private TransferResult transfer(Account debitAccount, Account creditAccount, BigDecimal amount) {
         BigDecimal debitBalance = debitAccount.getBalance().subtract(amount);
 
@@ -85,5 +85,13 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         creditAccount.setBalance(creditAccount.getBalance().add(amount));
 
         return SUCCESS;
+    }
+
+    void addAccount(Account account) {
+        accounts.put(account.getId(), account);
+    }
+
+    void clearAccounts() {
+        accounts.clear();
     }
 }

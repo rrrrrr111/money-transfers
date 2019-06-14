@@ -5,20 +5,12 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
- *
+ * Account data
  */
 public class Account {
 
     private String id;
     private BigDecimal balance;
-
-    public Account() {
-    }
-
-    public Account(String id, BigDecimal balance) {
-        this.id = id;
-        this.balance = balance;
-    }
 
     public String getId() {
         return id;

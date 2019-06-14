@@ -1,8 +1,6 @@
 package ru.roman.app;
 
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -14,6 +12,8 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.Set;
 
+import static ru.roman.app.GuiceConfig.INJECTOR_INSTANCE;
+
 /**
  * Jersey server
  */
@@ -23,7 +23,7 @@ public class JerseyServer {
     /**
      * Starts HTTP server exposing JAX-RS resources defined in this application.
      */
-    static HttpServer start() throws IOException {
+    public static HttpServer start() throws IOException {
 
         URI uri = URI.create(BASE_URI);
 
@@ -44,8 +44,7 @@ public class JerseyServer {
         @Override
         public Set<Object> getSingletons() {
             if (controllers == null) {
-                Injector injector = Guice.createInjector(new GuiceConfig());
-                MoneyController controller = injector.getInstance(MoneyController.class);
+                MoneyController controller = INJECTOR_INSTANCE.getInstance(MoneyController.class);
 
                 controllers = Collections.singleton(controller);
             }
