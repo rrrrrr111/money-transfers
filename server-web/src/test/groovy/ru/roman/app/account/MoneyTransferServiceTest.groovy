@@ -42,11 +42,11 @@ class MoneyTransferServiceTest {
     @DataProvider
     private Object[][] provider() {
         [
-                ["1", 1.0g, "2", 2.0g, 1.0g, SUCCESS, 0.0g, 3.0g],
-                ["1", 1.0g, "2", 2.0g, 0.555g, SUCCESS, 0.445g, 2.555g],
-                ["1", 1.0g, "2", 2.0g, 2.0g, INSUFFICIENT_FUNDS, 1.0g, 2.0g],
-                ["1", 1.0g, "2", 2.0g, -1.0g, AMOUNT_LESS_OR_EQUAL_ZERO, 1.0g, 2.0g],
-                ["1", 1.0g, "1", 1.0g, 1.0g, CAN_NOT_TRANSFER_TO_SAME_ACCOUNT, 1.0g, 1.0g],
+                ["1", 1.0g,  "2", 2.0g,   1.0g,   SUCCESS,                          0.0g,   3.0g   ],
+                ["1", 1.0g,  "2", 2.0g,   0.555g, SUCCESS,                          0.445g, 2.555g ],
+                ["1", 1.0g,  "2", 2.0g,   2.0g,   INSUFFICIENT_FUNDS,               1.0g,   2.0g   ],
+                ["1", 1.0g,  "2", 2.0g,  -1.0g,   AMOUNT_LESS_OR_EQUAL_ZERO,        1.0g,   2.0g   ],
+                ["1", 1.0g,  "1", 1.0g,   1.0g,   CAN_NOT_TRANSFER_TO_SAME_ACCOUNT, 1.0g,   1.0g   ],
         ] as Object[][]
     }
 
