@@ -23,17 +23,8 @@ public class JerseyServer {
     /**
      * Starts HTTP server exposing JAX-RS resources defined in this application.
      */
-    static HttpServer start() {
-        try {
+    static HttpServer start() throws IOException {
 
-            return startServer();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static HttpServer startServer() throws IOException {
         URI uri = URI.create(BASE_URI);
 
         HttpServer server = HttpServer.create(new InetSocketAddress(uri.getPort()), 0);

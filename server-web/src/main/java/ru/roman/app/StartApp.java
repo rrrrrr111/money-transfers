@@ -13,14 +13,14 @@ import static ru.roman.app.JerseyServer.BASE_URI;
 public class StartApp {
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
 
         HttpServer server = JerseyServer.start();
 
-        System.out.println(String.format("Jersey app started at %s%nHit enter to stop...", BASE_URI));
+        System.out.println(String.format("Jersey app started at %s%nHit Enter to stop...", BASE_URI));
 
-        Thread.currentThread().join();
         System.in.read();
+
         server.stop(0);
     }
 }
